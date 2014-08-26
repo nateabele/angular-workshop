@@ -12,9 +12,23 @@ SockDrawer.config(function($locationProvider, $stateProvider) {
   $locationProvider.html5Mode(true);
 
   $stateProvider.state("apps", {
-    url: "/"
+    url: "",
+    views: {
+      main: {
+        templateUrl: "/partials/apps.html"
+      }
+    }
   }).state("apps.messages", {
-    url: "/messages"
+    url: "/messages",
+    resolve: {
+      messages: function($http) {
+        return $http.get("/api/messages");
+      }
+    },
+    controller: function($scope, messages, DataManager) {
+      console.log(DataManager.doSomething(2));
+      $scope.messages = messages;
+    }
   }).state("apps.photos", {
     url: "/photos"
   }).state("apps.files", {
@@ -23,10 +37,19 @@ SockDrawer.config(function($locationProvider, $stateProvider) {
 
 });
 
-SockDrawer.run(function($state, $location) {
+SockDrawer.run(function($state) {
   $state.go("apps");
 });
 
 SockDrawer.controller("NavigationController", function($scope, $state) {
-  $scope.user = { name: "Test" };
+  $scope.user = { name: "Nate" };
+});
+
+SockDrawer.service("DataManager", function() {
+
+  angular.extend(this, {
+    doSomething: function(val) {
+      return val++;
+    }
+  });
 });

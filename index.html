@@ -2,6 +2,7 @@
 <html ng-app="sockdrawer">
 
 <head>
+  <base href="/" />
   <meta charset="utf-8" />
   <title>Sock Drawer</title>
 
@@ -74,34 +75,7 @@
       </nav>
     </header>
 
-    <div class="main">
-
-      <div class="row">
-
-        <div class="app-button">
-          <a href="#" class="thumbnail">
-            <span class="fa fa-paper-plane"></span>
-            <h3>Messages</h3>
-          </a>
-        </div>
-
-        <div class="app-button">
-          <a href="#" class="thumbnail">
-            <span class="fa fa-image"></span>
-            <h3>Photos</h3>
-          </a>
-        </div>
-
-        <div class="app-button">
-          <a href="#" class="thumbnail">
-            <span class="fa fa-file"></span>
-            <h3>Files</h3>
-          </a>
-        </div>
-
-      </div>
-
-    </div>
+    <div class="main" ui-view="main"></div>
 
   </div>
 

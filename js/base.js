@@ -22,12 +22,19 @@ SockDrawer.config(function($locationProvider, $stateProvider) {
     url: "/messages",
     resolve: {
       messages: function($http) {
-        return $http.get("/api/messages");
+        return $http.get("/api/messages").then(function(response) {
+          return response.data;
+        });
       }
     },
-    controller: function($scope, messages, DataManager) {
-      console.log(DataManager.doSomething(2));
-      $scope.messages = messages;
+    views: {
+      "main@": {
+        templateUrl: "/partials/messages.html",
+        controller: function($scope, messages, DataManager) {
+          console.log(DataManager.doSomething(2));
+          $scope.messages = messages;
+        }
+      }
     }
   }).state("apps.photos", {
     url: "/photos"

@@ -1,5 +1,8 @@
 <ul>
   <li ng-repeat="message in messages">
-    {{ message }}
+    <div class="well">
+      <div>From: {{ message.from }}, To: {{ message.to }}</div>
+      <div><strong>{{ message.subject }}</strong></div>
+    </div>
   </li>
 </ul>

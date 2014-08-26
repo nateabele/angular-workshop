@@ -30,10 +30,7 @@ SockDrawer.config(function($locationProvider, $stateProvider) {
     views: {
       "main@": {
         templateUrl: "/partials/messages.html",
-        controller: function($scope, messages, DataManager) {
-          console.log(DataManager.doSomething(2));
-          $scope.messages = messages;
-        }
+        controller: "MessagesController"
       }
     }
   }).state("apps.photos", {
@@ -44,19 +41,28 @@ SockDrawer.config(function($locationProvider, $stateProvider) {
 
 });
 
-SockDrawer.run(function($state) {
+SockDrawer.run(function($state, $rootScope) {
   $state.go("apps");
+
+  $rootScope.$on("$stateChangeError", function(event, transition) {
+    event.preventDefault();
+    console.log(arguments);
+  });
 });
 
 SockDrawer.controller("NavigationController", function($scope, $state) {
   $scope.user = { name: "Nate" };
 });
 
+SockDrawer.controller("MessagesController", function($scope, messages) {
+  $scope.messages = messages;
+});
+
 SockDrawer.service("DataManager", function() {
 
   angular.extend(this, {
     doSomething: function(val) {
-      return val++;
+      return ++val;
     }
   });
 });

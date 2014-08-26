@@ -1,14 +1,18 @@
 [
 	{
+		"id": "1",
 		"from": "Nate",
 		"to": "Everybody",
 		"subject": "Doing a demo",
-		"body": "Hope I don't screw this up"
+		"body": "Hope I don't screw this up",
+		"date": 1409096767215
 	},
 	{
+		"id": "2",
 		"from": "Everybody",
 		"to": "Nate",
 		"subject": "...",
-		"body": "Stop making syntax errors!"
+		"body": "Stop making syntax errors!",
+		"date": 1409096767215
 	}
 ]

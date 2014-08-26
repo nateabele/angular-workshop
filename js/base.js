@@ -33,6 +33,14 @@ SockDrawer.config(function($locationProvider, $stateProvider) {
         controller: "MessagesController"
       }
     }
+  }).state("apps.messages.view", {
+    url: "/{id}",
+    views: {
+      view: {
+        templateUrl: "/partials/message-view.html",
+        controller: "MessageViewController"
+      }
+    }
   }).state("apps.photos", {
     url: "/photos"
   }).state("apps.files", {
@@ -51,12 +59,22 @@ SockDrawer.run(function($state, $rootScope) {
 });
 
 SockDrawer.controller("NavigationController", function($scope, $state) {
-  $scope.user = { name: "Nate" };
+  angular.extend($scope, {
+    user: { name: "Nate" }
+  });
 });
 
 SockDrawer.controller("MessagesController", function($scope, messages) {
   $scope.messages = messages;
 });
+
+SockDrawer.controller("MessageViewController",
+  function($scope, $stateParams, messages) {
+    angular.extend($scope, {
+      message: _(messages).find({ id: $stateParams.id })
+    });
+  }
+);
 
 SockDrawer.service("DataManager", function() {
 

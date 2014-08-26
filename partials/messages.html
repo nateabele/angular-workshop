@@ -1,8 +1,15 @@
-<ul>
-  <li ng-repeat="message in messages">
-    <div class="well">
-      <div>From: {{ message.from }}, To: {{ message.to }}</div>
-      <div><strong>{{ message.subject }}</strong></div>
-    </div>
-  </li>
-</ul>
+<div class="row">
+
+  <div class="col-sm-2">
+    <a ui-sref=".view({ id: message.id })" ng-repeat="message in messages">
+      <div class="well">
+        <div>From: {{ message.from }}, To: {{ message.to }}</div>
+        <div><strong>{{ message.subject }}</strong></div>
+      </div>
+    </a>
+  </div>
+
+  <div class="col-sm-2">
+    <div ui-view="view"></div>
+  </div>
+</div>

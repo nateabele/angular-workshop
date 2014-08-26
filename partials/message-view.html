@@ -1,0 +1,16 @@
+<div>
+  <div class="row">
+    <div class="col-sm-2">
+      <strong>{{ message.from }}</strong>
+    </div>
+
+    <div class="col-sm-2"></div>
+
+    <div class="col-sm-2">
+      <div>{{ message.date | date }}</div>
+    </div>
+  </div>
+  <div class="row">
+    {{ message.body }}
+  </div>
+</div>
